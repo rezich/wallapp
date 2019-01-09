@@ -1,0 +1,51 @@
+body {
+  background: darkslategray;
+}
+.App {
+  margin: 0 1em;
+  padding: 1em 0;
+}
+#root {
+  width: 40em;
+  margin: 2em auto auto auto;
+  background: silver;
+}
+h1 {
+  font-size: 18pt;
+  margin-bottom: 0.25em;
+}
+#nav {
+  background: slategray;
+}
+#nav > * {
+  display: flex;
+  justify-content: space-evenly;
+}
+#nav > ul > li {
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+}
+#nav > ul > li:hover {
+  background: lightslategray;
+}
+#signup, #login {
+  background: lightslategray;
+}
+#wall, #new_post {
+  margin-top: 1em;
+}
+#wall > li {
+  margin-bottom: 0.5em;
+  background: gainsboro;
+  padding: 0.5em; 
+}
+#new_post {
+  background: lightslategray;
+  display: flex;
+  justify-content: center;
+}
+
+.App > * {
+  padding: 0.25em;
+}
