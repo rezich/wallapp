@@ -1,22 +1,25 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from .models import Post
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
     class Meta:
         model = Post
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
+    #posts = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('username', 'email')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
+    #posts = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
 
     def get_token(self, obj):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -39,5 +42,5 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('token', 'username', 'password', 'email')

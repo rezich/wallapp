@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth.models import User
 from django.urls import reverse
+from unittest import skip
 
 from core.models import Post
 
@@ -29,17 +30,20 @@ class WallAppTests(APITestCase):
         user.save()
         post1 = Post.objects.create(
             body_text="first!",
-            pub_date=datetime.now() - timedelta(seconds=3)
+            pub_date=datetime.now() - timedelta(seconds=3),
+            author=user
         )
         post1.save()
         post2 = Post.objects.create(
             body_text="second!",
-            pub_date=datetime.now() - timedelta(seconds=2)
+            pub_date=datetime.now() - timedelta(seconds=2),
+            author=user
         )
         post2.save()
         post3 = Post.objects.create(
             body_text="third!",
-            pub_date=datetime.now() - timedelta(seconds=1)
+            pub_date=datetime.now() - timedelta(seconds=1),
+            author=user
         )
         post3.save()
 
