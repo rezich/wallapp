@@ -35,10 +35,24 @@ h1 {
 #wall, #new_post {
   margin-top: 1em;
 }
-#wall > li {
+.post {
   margin-bottom: 0.5em;
   background: gainsboro;
   padding: 0.5em; 
+}
+.post-body {
+  quotes: "“" "”" "‘" "’";
+  font-size: 20pt;
+}
+.post-body:before {
+  content: open-quote;
+}
+.post-body:after {
+  content: close-quote;
+}
+.post-author {
+  color: lightslategray;
+  margin-left: 1em;
 }
 #new_post {
   background: lightslategray;

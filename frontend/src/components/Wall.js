@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 function Wall(props) {
   const posts = props.posts;
   return (
-    <ul id="wall">
+    <div id="wall">
     {posts.map(post => (
-      <li key={post.id}>
-        {post.body_text}
-      </li>
+      <div class="post" key={post.id}>
+        <div class="post-body">{post.body_text}</div>
+        <div class="post-author">&ndash;{post.author}</div>
+      </div>
     ))}
-  </ul>
+  </div>
   );
 }
 
