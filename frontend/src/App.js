@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Nav from './components/Nav';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import Wall from './components/Wall';
+import Wall from './components/PostList';
 import NewPostForm from './components/NewPostForm';
 import './App.css';
 
@@ -16,6 +16,7 @@ function handle_errors(response) {
 class App extends Component {
   constructor(props) {
     super(props);
+    document.title = "WallApp";
     this.state = {
       displayed_form: '',
       logged_in: localStorage.getItem('token') ? true : false,
@@ -25,7 +26,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.title = "WallApp";
     if (this.state.logged_in) {
       fetch('http://localhost:8000/api/current_user/', {
         headers: {
