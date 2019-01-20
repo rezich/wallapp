@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 function Nav(props) {
   const username = props.username == null ? '' : props.username;
@@ -17,9 +18,11 @@ function Nav(props) {
   );
   return (
     <div id="nav">
-      {username.length > 0 &&
-        <b>logged in as {username}</b>
-      }
+      <div>
+        {username.length > 0 &&
+          <b>logged in as <Link to={`/user/${username}/`}>{username}</Link></b>
+        }
+      </div>
       {props.logged_in ? logged_in_nav : logged_out_nav}
     </div>
   );

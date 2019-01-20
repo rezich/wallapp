@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from "react-router-dom";
 //import PropTypes from 'prop-types';
 
-function Wall(props) {
+function PostList(props) {
   const posts = props.posts;
   return (
-    <div id="wall">
+    <div className="post-list">
     {posts.map(post => (
-      <div class="post" key={post.id}>
-        <div class="post-body">{post.body_text}</div>
-        <div class="post-author">&ndash;{post.author}</div>
+      <div className="post" key={post.id}>
+        <div className="post-body">{post.body_text}</div>
+        <div className="post-author">&ndash;<Link to={`/user/${post.author}/`}>{post.author}</Link></div>
+        <div><Link to={`/post/${post.id}/`}>#{post.id}</Link></div>
       </div>
     ))}
   </div>
   );
 }
 
-export default Wall;
+export default PostList;

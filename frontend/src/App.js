@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { Route, Link, Switch } from "react-router-dom";
 import Nav from './components/Nav';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import Wall from './components/PostList';
+import PostList from './components/PostList';
 import NewPostForm from './components/NewPostForm';
+import UserDetail from './components/UserDetail';
+import PostDetail from './components/PostDetail';
+import NotFound from './components/NotFound';
 import './App.css';
 
 function handle_errors(response) {
@@ -146,7 +150,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>WallApp</h1>
+        <h1><Link to={`/`}>WallApp</Link></h1>
         <Nav
           logged_in={this.state.logged_in}
           display_form={this.display_form}
@@ -155,7 +159,24 @@ class App extends Component {
         />
         {nav_form}
         {new_post_form}
-        <Wall posts={this.state.posts} />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={props => <PostList posts={this.state.posts} />}
+          />
+          <Route
+            path={`/user/:username`}
+            component={UserDetail}
+          />
+          <Route
+            path={`/post/:id`}
+            component={PostDetail}
+          />
+          <Route
+            component={NotFound}
+          />`
+        </Switch>
       </div>
     );
   }
