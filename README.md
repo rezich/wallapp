@@ -43,6 +43,7 @@ Known issues
    - I'm unsure as to whether or not it's a good idea to have a React app
      sitting within the Django project directory
    - The client-side app is unrefined and ugly
+   - **User and Post detail views do not yet work.**
  - Testing
    - As I'm new to Django, Django REST Framework, React, and REST API design in
      general, I'm not really sure what needs to be tested and whether or not my
